@@ -23,11 +23,11 @@ def clean_data(df):
     # make all column names uppercase and clean
     df.columns = [col.strip().upper() for col in df.columns]
 
-    # convert totalkwh to numeric (remove commas first)
+    # convert totalkwh to numeric 
     df["TOTALKWH"] = df["TOTALKWH"].astype(str).str.replace(",", "")
     df["TOTALKWH"] = pd.to_numeric(df["TOTALKWH"], errors="coerce")
 
-    # convert totalcustomers too (we may use it later)
+    # convert totalcustomers to numeric
     df["TOTALCUSTOMERS"] = df["TOTALCUSTOMERS"].astype(str).str.replace(",", "")
     df["TOTALCUSTOMERS"] = pd.to_numeric(df["TOTALCUSTOMERS"], errors="coerce")
 
