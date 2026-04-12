@@ -5,6 +5,7 @@ import torch.nn as nn
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.preprocessing import StandardScaler
+import joblib
 
 
 # load data
@@ -86,6 +87,11 @@ def run_NN_model(learning_rate, epochs):
         preds = model(X_train_tensor)
         loss = loss_fn(preds, y_train_tensor)
 
+        # save the model and scalers 
+        torch.save(model.state_dict(), "models/nn_model.pt")
+        joblib.dump(scaler, "models/x_scaler.pkl")
+        joblib.dump(y_scaler, "models/y_scaler.pkl")
+
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -111,14 +117,19 @@ def run_NN_model(learning_rate, epochs):
 
 
 # several simple settings to test
+# settings = [
+#     {"learning_rate": 0.01, "epochs": 50},
+#     {"learning_rate": 0.001, "epochs": 50},
+#     {"learning_rate": 0.001, "epochs": 100}
+# ]
+
+# leaving only best setting based on nn_results.txt output
 settings = [
-    {"learning_rate": 0.01, "epochs": 50},
-    {"learning_rate": 0.001, "epochs": 50},
-    {"learning_rate": 0.001, "epochs": 100}
+    {"learning_rate": 0.01, "epochs": 50}
 ]
 
 # save results
-with open("nn_results.txt", "w") as f:
+with open("nn_results_final.txt", "w") as f:
     f.write("neural network results\n")
     f.write("========================\n\n")
 

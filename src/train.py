@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import numpy as np
+import joblib 
 
 
 # load data
@@ -40,6 +41,8 @@ with open("results.txt", "w") as f:
     lin_reg_model.fit(X_train, y_train)
     lin_reg_preds = lin_reg_model.predict(X_test)
 
+    joblib.dump(lin_reg_model, "models/lin_reg_model.pkl")
+
     # evaluate MAE and RMSE 
     lin_reg_mae = mean_absolute_error(y_test, lin_reg_preds)
     lin_reg_rmse = np.sqrt(mean_squared_error(y_test, lin_reg_preds))
@@ -64,9 +67,10 @@ with open("results.txt", "w") as f:
     for alpha in [0.1, 1.0, 10.0]:
         f.write(f"\nalpha: {alpha}\n")
 
-        model = Ridge(alpha=alpha)
-        model.fit(X_train, y_train)
-        preds = model.predict(X_test)
+        ridge_model = Ridge(alpha=alpha)
+        ridge_model.fit(X_train, y_train)
+        preds = ridge_model.predict(X_test)
+        joblib.dump(ridge_model, f"models/ridge_alpha_{alpha}.pkl")
         mae = mean_absolute_error(y_test, preds)
         rmse = np.sqrt(mean_squared_error(y_test, preds))
 
