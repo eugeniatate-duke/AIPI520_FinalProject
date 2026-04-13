@@ -186,16 +186,16 @@ python src/predict.py
 
 ## Limitations: 
 
-	•	Model depends on availability of recent historical data
-	•	Does not explicitly use ZIP code as a feature (implicitly captured through history)
-	•	Limited long-term forecasting capability 
-	•	Neural network results vary slightly due to random initialization
+	- Model depends on availability of recent historical data
+	- Does not explicitly use ZIP code as a feature (implicitly captured through history)
+	- Limited long-term forecasting capability 
+	- Neural network results vary slightly due to random initialization
 
 ## Future Improvements
-	•	Add explicit ZIP code encoding
-    •   Allow user prompt 
-	•	Improve neural network architecture or model selection 
-	•	Deploy as an API or web application
+	- Add explicit ZIP code encoding
+    - Allow user prompt 
+	- Improve neural network architecture or model selection 
+	- Deploy as an API or web application
 
 ## Author
 Eugenia Tate for AIPI 520 Final Project at Duke University 
