@@ -163,6 +163,11 @@ Example output:
 
 ##  How to Run
 
+### 0. Install packages 
+```bash
+pip install -r requirements.txt
+```
+
 ### 1. Data Preparation
 ```bash
 python src/prepdata.py
